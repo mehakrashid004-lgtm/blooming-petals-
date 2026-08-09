@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Red & Pink Roses Collection</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="rose.css">
+
+  <!-- tiny additions so overlay + compare icon look correct with your existing CSS -->
+  <style>
+    /* overlay on top of the image (keeps same look as your current cards) */
+    .decor-card-text-overlay {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,230,239,0.98) 100%);
+      box-sizing: border-box;
+      text-align: left;
+    }
+    .decor-card-text-overlay h3 { margin: 0 0 6px 0; font-size: 1.15rem; color: #e75480; }
+    .decor-card-text-overlay p { margin: 0; color: #6b4b52; font-size: 0.95rem; }
+
+    /* small fixed compare bar (non-intrusive, matches your colors) */
+    #compare-bar {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #fff;
+      border-radius: 30px;
+      padding: 8px 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1500;
+      font-family: 'Open Sans', sans-serif;
+    }
+    #compare-count { font-weight: 700; color: #e75480; }
+    .compare-open-btn {
+      background: #e75480;
+      color: #fff;
+      border-radius: 20px;
+      padding: 8px 12px;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      border: none;
+    }
+    /* ensure checkbox sits inside card and not interfering with overlay */
+    .decor-checkbox {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 6;
+      width: 22px;
+      height: 22px;
+      accent-color: #e75480;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 3px rgba(0,0,0,0.25);
+      transition: transform 0.15s ease;
+    }
+    .decor-checkbox:focus { outline: 2px solid rgba(231,84,128,0.25); }
+  </style>
+</head>
+
+<body>
+  <section class="decor-full-body">
+    <section class="decor-section" data-aos="fade-up">
+      <h1>Engagement Bliss</h1>
+      <p>Engagement Bliss — Where Love Meets Celebration in Full Blooms</p>
+    </section>
+
+    <!-- CARDS WILL RENDER INTO THIS CONTAINER -->
+    <section class="container py-5">
+      <div id="decor-container" class="row g-4">
+        <!-- JS inserts cards here -->
+      </div>
+    </section>
+
+    <section class="decor-summary-section" data-aos="fade-up">
+      <h2>Our Promise of Pure Perfection</h2>
+      <p>
+        Every wedding tells a love story — and at Blooming Petals, we bring that story to life through exquisite décor. From dreamy floral arches to elegant centerpieces and delicate aisle arrangements, every detail is crafted to reflect your unique bond. Our designers blend color, texture, and fragrance to create a romantic atmosphere that feels both timeless and personal. Whether you envision a grand celebration or an intimate ceremony, Blooming Petals ensures your wedding blooms with beauty, elegance, and unforgettable charm.
+      </p>
+      <button class="btn decor-btn-pink btn-lg decor-btn">Explore More decor</button>
+    </section>
+  </section>
+
+  <!-- Compare bar: shows selected count and opens modal -->
+  <div id="compare-bar" aria-hidden="false">
+    <div>Selected: <span id="compare-count">0</span></div>
+    <button id="open-compare" class="compare-open-btn">Compare</button>
+  </div>
+
+  <!-- Compare modal (hidden until needed) -->
+  <div id="compare-modal" class="compare-modal" style="display:none;">
+    <div class="compare-content">
+      <span id="close-compare" class="close-btn" title="Close">&times;</span>
+      <h3>Compare Selected Decors</h3>
+      <div id="compare-grid" class="compare-grid"></div>
+
+      <div style="margin-top:18px;">
+        <button id="remove-selected" class="decor-btn" style="margin-right:10px;">Remove Selected</button>
+        <button id="clear-all" class="decor-btn" style="background:#f2c6d9; color:#7a2a40;">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIBRARIES -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="flowers.js"></script>
+
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+
+
+
+
+    
+  </script>
+
+  <!-- MAIN SCRIPT: data objects + rendering + compare logic -->
+  <!-- <script>
+    /***********************
+     *  Step 1: Data objects
+     *  Edit these arrays to add/remove items.
+     *  Keep the same property names.
+     ***********************/
+    const engagementDecors = [
+      { id: "e1", title: "Elegant Blush-Themed", description: "Outdoor setup with pastel drapes & soft lighting.", image: "asset/engagment/Blush_Serenity_Engagement_Setup.jpg", price: "PKR 25,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e2", title: "Blush Pink Roses", description: "Soft tones that whisper love and admiration.", image: "asset/engagment/59351c003c97357a658ec9f91c65eac9.jpg", price: "PKR 30,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e3", title: "Scarlet Charm", description: "Vibrant hues that speak louder than words.", image: "asset/engagment/a43ea5c04909093940b786e1321f9d86.jpg", price: "PKR 27,500", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e4", title: "Soft Bloom Mix", description: "Blended tones for an unforgettable gesture.", image: "asset/engagment/14114d276568a229fcec3e076b36dfb8.jpg", price: "PKR 22,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e5", title: "Rosy Glow", description: "Gentle pink roses that brighten every heart.", image: "asset/engagment/e68c5a22071b727523ef0ed444f29bed.jpg", price: "PKR 24,500", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e6", title: "Rosy Elegance", description: "Classic red roses for timeless expressions.", image: "asset/engagment/e8453f99b9b977b93dcba1657385d7c0.jpg", price: "PKR 28,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e7", title: "Romantic Swing Harmony", description: "Swing with roses — dreamy photos guaranteed.", image: "asset/engagment/Romantic_Rose_Harmony_Swing.jpg", price: "PKR 26,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e8", title: "Semi-Arch Duo", description: "Two semi-arches topped with flowers for an elegant look.", image: "asset/engagment/two+flower+in+semi-arches+.webp", price: "PKR 29,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" },
+      { id: "e9", title: "Blushing Bloom Arch", description: "Graceful arch to frame your special moment.", image: "asset/engagment/Blushing_Bloom_Elegance_Arch.avif", price: "PKR 31,000", detailA: "Lorem ipsum dolor", detailB: "Lorem ipsum" }
+    ];
+
+    /***********************
+     *  Step 2: Rendering the cards (keeps your UI identical)
+     ***********************/
+    const container = document.getElementById("decor-container");
+    const COMPARE_KEY = "bp_compare_v1"; // versioned key for localStorage
+
+    function loadCompareIds() {
+      try {
+        return JSON.parse(localStorage.getItem(COMPARE_KEY)) || [];
+      } catch { return []; }
+    }
+    function saveCompareIds(ids) {
+      localStorage.setItem(COMPARE_KEY, JSON.stringify(ids));
+    }
+    function updateCompareCounter() {
+      const count = loadCompareIds().length;
+      document.getElementById("compare-count").textContent = count;
+    }
+
+    function renderCards(items) {
+      container.innerHTML = ""; // clear
+      const existingIds = loadCompareIds();
+
+      items.forEach((item, i) => {
+        // create card markup using the same structure you had
+        const col = document.createElement("div");
+        col.className = "col-lg-4 col-md-6 col-sm-12";
+        col.setAttribute("data-aos", "zoom-in");
+        col.setAttribute("data-aos-delay", 100 * ((i % 9) + 1));
+
+        col.innerHTML = `
+          <div class="decor-card">
+            <input type="checkbox" class="decor-checkbox" aria-label="Add to compare" data-id="${item.id}" ${existingIds.includes(item.id) ? "checked" : ""}>
+            <img src="${item.image}" alt="${item.title}">
+            <div class="decor-card-text-overlay">
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="col-lg-6">${item.detailA}</p>
+            <p class="col-lg-6">${item.detailB}</p>
+          </div>
+        `;
+        container.appendChild(col);
+      });
+
+      // add event listeners to checkboxes
+      document.querySelectorAll(".decor-checkbox").forEach(cb => {
+        cb.addEventListener("change", (e) => {
+          const id = e.target.dataset.id;
+          if (e.target.checked) addToCompare(id);
+          else removeFromCompare(id);
+          updateCompareCounter();
+        });
+      });
+
+      // refresh AOS to animate newly added items
+      if (window.AOS) AOS.refresh();
+    }
+
+    function addToCompare(id) {
+      let ids = loadCompareIds();
+      const MAX = 4; // you can change max selection if you want
+      if (!ids.includes(id)) {
+        if (ids.length >= MAX) {
+          alert("You can compare up to " + MAX + " items.");
+          // uncheck the checkbox that caused this alert
+          const cb = document.querySelector('.decor-checkbox[data-id="'+id+'"]');
+          if (cb) cb.checked = false;
+          return;
+        }
+        ids.push(id);
+        saveCompareIds(ids);
+      }
+    }
+
+    function removeFromCompare(id) {
+      let ids = loadCompareIds();
+      ids = ids.filter(x => x !== id);
+      saveCompareIds(ids);
+    }
+
+    // initial render
+    renderCards(engagementDecors);
+    updateCompareCounter();
+
+    /***********************
+     *  Step 3: Compare modal logic
+     ***********************/
+    const compareModal = document.getElementById("compare-modal");
+    const compareGrid = document.getElementById("compare-grid");
+    const openBtn = document.getElementById("open-compare");
+    const closeBtn = document.getElementById("close-compare");
+    const removeBtn = document.getElementById("remove-selected");
+    const clearBtn = document.getElementById("clear-all");
+
+    function getDecorById(id) {
+      return engagementDecors.find(d => d.id === id) || null;
+    }
+
+    function buildCompareGrid() {
+      const ids = loadCompareIds();
+      compareGrid.innerHTML = "";
+      if (ids.length === 0) {
+        compareGrid.innerHTML = "<p>No items selected. Use the checkboxes on cards to add items.</p>";
+        return;
+      }
+
+      // For each selected id, create a compare item column
+      ids.forEach(id => {
+        // allow for comparing across pages: first check engagement list, otherwise you could merge global lists later
+        const item = getDecorById(id) || { id, title: "Item not found", image: "", description: "" };
+        const div = document.createElement("div");
+        div.className = "compare-item";
+        div.innerHTML = `
+          <label style="display:block;text-align:left;"><input type="checkbox" class="cmp-remove-checkbox" data-id="${item.id}"> Remove</label>
+          <img src="${item.image}" alt="${item.title}">
+          <h5 style="margin:6px 0 2px 0; color:#e75480;">${item.title}</h5>
+          <div style="color:#6b4b52; font-size:0.95rem;">${item.description}</div>
+          <div style="margin-top:8px; font-weight:600; color:#c7446a;">${item.price || ""}</div>
+        `;
+        compareGrid.appendChild(div);
+      });
+    }
+
+    openBtn.addEventListener("click", () => {
+      buildCompareGrid();
+      compareModal.style.display = "flex";
+    });
+    closeBtn.addEventListener("click", () => compareModal.style.display = "none");
+    compareModal.addEventListener("click", (e) => {
+      if (e.target === compareModal) compareModal.style.display = "none";
+    });
+
+    removeBtn.addEventListener("click", () => {
+      const checked = Array.from(document.querySelectorAll(".cmp-remove-checkbox:checked")).map(cb => cb.dataset.id);
+      if (checked.length === 0) { alert("Select items to remove first."); return; }
+      let ids = loadCompareIds();
+      ids = ids.filter(id => !checked.includes(id));
+      saveCompareIds(ids);
+      // Uncheck the checkboxes on cards too
+      checked.forEach(id => {
+        const cb = document.querySelector('.decor-checkbox[data-id="'+id+'"]');
+        if (cb) cb.checked = false;
+      });
+      buildCompareGrid();
+      updateCompareCounter();
+    });
+
+    clearBtn.addEventListener("click", () => {
+      if (!confirm("Clear all compare selections?")) return;
+      saveCompareIds([]);
+      // uncheck all card checkboxes
+      document.querySelectorAll('.decor-checkbox').forEach(cb => cb.checked = false);
+      buildCompareGrid();
+      updateCompareCounter();
+    });
+
+    // Also update compare counter in real time if localStorage changed in another tab
+    window.addEventListener("storage", (e) => {
+      if (e.key === COMPARE_KEY) {
+        // re-render checkboxes state
+        document.querySelectorAll('.decor-checkbox').forEach(cb => {
+          const ids = loadCompareIds();
+          cb.checked = ids.includes(cb.dataset.id);
+        });
+        updateCompareCounter();
+      }
+    });
+  </script> -->
+  <!-- <script src="app.js"></script> -->
+</body>
+</html>

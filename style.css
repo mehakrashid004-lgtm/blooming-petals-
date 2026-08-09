@@ -1,0 +1,410 @@
+
+/* --------------------------------------------------------------  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🌸 Navbar */
+.navigation {
+  background-color: rgb(201, 106, 156);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.navigation h3{
+     font-family: great vibes;
+    margin: 8px 0px 4px 4px;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+a.btn.btn-light.text-dark.fw-semibold {
+    padding: 3px 10px 0px 10px;
+    height: 33px;
+        margin: 4px 1px 0px 0px;
+
+}
+
+.navbar-toggler {
+  border: none;
+  filter: invert(1);
+}
+
+/* Hero Section */
+.top-bg {
+  height: 100vh;
+  background: url("asset/home_page/DeWatermark.ai_1761588583829.jpeg") no-repeat center center/cover;
+  background-blend-mode: lighten;
+  padding-top: 80px; /* pushes content below fixed navbar */
+}
+
+/* .hero-text {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  max-width: 600px;
+} */
+
+
+.hero-text {
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 0px 678px 0px 0px;
+}
+
+/* .bg-para {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: cursive;
+  color: rgb(158, 68, 116);
+} */
+
+.bg-para {
+    font-size: 36px;
+    font-weight: 500;
+    font-family: "great vibes", cursive;
+    color: rgb(158, 68, 116);
+}
+
+/* Button */
+.btn53 {
+  border: 1px solid white;
+  background-color: rgb(201, 106, 156);
+  color: white;
+  border-radius: 7px;
+  padding: 10px 35px;
+  font-weight: 600;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.btn53:hover {
+  background-color: rgb(176, 72, 126);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bg-para {
+    font-size: 24px;
+  }
+  .hero-text {
+    margin: 0 15px;
+  }
+}
+
+
+/* ---------------------------------------------------------------------------------- */
+
+
+/* -------------- second_start ------------------ */
+
+.demo_para{
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'great vibes';
+  text-align: center;
+  color: rgb(201, 106, 156);
+  margin: 100px 0px 55px 0px;
+  text-shadow: 1px 1px 2px black, 0 0 1em #e700ff, 0 0 0.2em #0000ff0f;
+}
+
+.home_second_container img {
+  width: 100%;
+  height: 280px;               
+  object-fit: cover;           
+  /* border: 3px solid #f7d5e9; */
+  border-radius: 10px;        
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+}
+
+/* Hover effect */
+.home_second_container img:hover {
+  transform: scale(1.05);     /* slight zoom */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border-color: #e79cc2;      /* darker pink border on hover */
+  cursor: pointer;
+}
+
+.btn_demo {
+    border: 2px solid rgb(223, 174, 174);
+    padding: 10px 30px 10px 30px;
+    background-color: #f1bcbc;
+    color: rgb(190, 87, 104);
+    margin-top: 17px;
+}
+
+/* ----------------- secon_end ---------------------------------- */
+
+
+
+
+
+
+
+/* -----------------third_start---------------------------------- */
+.home_second_part_img {
+  height: 70vh;
+  object-fit: cover;
+  /* border-left: 2px solid #9b3749;
+  border-bottom: 2px solid #9b3749;
+    padding: 0px 0px 6px 6px; */
+}
+
+.carousel-inner {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Heading above section */
+.home_second_part_2 {
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  color: rgb(201, 106, 156);
+  margin: 40px 0px 10px 0px;
+  text-shadow: 1px 1px 2px black, 0 0 1em #e700ff, 0 0 0.2em #0000ff0f;
+}
+
+/* Right text section */
+.right {
+  background-color: #ffecef;
+}
+
+.home_sec_part_right_h_1 {
+  font-size: 32px;
+  font-weight: 900;
+  font-family: 'Great Vibes', cursive;
+  color: rgb(201, 106, 156);
+  margin-bottom: 20px;
+}
+
+.home_sec_part_right_p_1,
+.home_sec_part_right_p_2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(201, 106, 156);
+  font-family: ui-monospace;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .home_second_part_img {
+    height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .home_second_part_img {
+    height: 45vh;
+  }
+
+  .home_sec_part_right_h_1 {
+    font-size: 28px;
+  }
+
+  .home_sec_part_right_p_1,
+  .home_sec_part_right_p_2 {
+    font-size: 16px;
+  }
+}
+/* -----------------third_end---------------------------------- */
+
+
+
+
+
+
+/* ----------------fourth_start_video_slider-------------------------------- */
+#carouselExampleFade {
+  width: 90%;
+  margin: auto;
+}
+
+#carouselExampleFade .carousel-control-prev {
+  left: -40px;
+}
+
+#carouselExampleFade .carousel-control-next {
+  right: -40px;
+}
+
+.home_slider_heading{
+    font-size: 40px;
+   font-weight: 500;
+   margin-left: 28px;
+   font-family: 'great vibes';
+   text-align: center;
+  color: rgb(201 106 156);
+
+   margin: auto;
+   margin-top: 61px;
+   margin-bottom: 59px;
+text-shadow: 1px 1px 2px black, 0 0 1em #e700ff, 0 0 0.2em #0000ff0f;
+}
+
+.slider_class {
+    margin: 0px 0px 102px 0px;
+}
+
+/* .home_map {
+        margin: 57px 0px 80px 321px;
+} */
+/* ---------------------------------------------------------------- */
+footer a:hover {
+  color: rgb(158 68 116);; /* golden hover effect */
+}
+
+.footer-css{
+  background-color: rgb(249 194 223 / 85%);
+  color: rgb(201, 106, 156);
+  
+}
+
+footer h5{
+  color: rgb(201, 106, 156);
+
+}
+
+.home-extra p{
+color: #000;
+}
+/* ----------------fourth_end_video_slider-------------------------------- *
+
+/* ---------- new review ------------------ */
+
+.testimonials {
+  background-color: #e598e58c;
+  padding: 100px 20px;
+  text-align: center;
+  overflow: visible; /* allows scaled card to show outside its container */
+}
+
+.testimonials h2 {
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #cf529b;
+}
+
+.carousel-inner {
+  overflow: visible; /* important: prevents clipping when scaling */
+}
+
+.card {
+  border: none;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-origin: center;
+}
+
+/* Highlighted middle card */
+.center-card {
+  transform: scale(1.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 10;
+}
+
+/* Nice hover effect for all cards */
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Text and stars */
+.stars {
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.card h5 {
+  margin-top: 15px;
+  font-weight: 700;
+  color: #000;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #000;
+}
+
+
+.carousel-indicators{
+   margin-bottom: -60px;
+
+} 
+
+  .center-card {
+  /* transform: scale(1.1); */
+  z-index: 2;
+} 
+
+
+/* ---------------- icon ------------------ */
+
+.features-section {
+  background-color: #fff;
+}
+
+.feature-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  color: #f26c13; /* Orange tone like your screenshot */
+}
+
+
+/* ------------home css end ------------ */
+
+
+/* ----------- about css start ------------- */
+body {
+  overflow-x: hidden;
+}
+
+.about h1 {
+
+  font-family: "Dancing Script", cursive;
+
+
+}
+.about-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-card-body img {
+  height: 190px;
+  width: 200px;
+  border-radius: 50%;
+}
+/* ----------- about css end ------------- */
